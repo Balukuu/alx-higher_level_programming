@@ -1,15 +1,12 @@
 #!/usr/bin/python3
-"""Displays the X-Request-Id header variable of a request to a given URL.
-Usage: ./1-hbtn_header.py <URL>
+""" Sends request to URL provided as command and display the
+    value of the X-Request-Id found in the header of the response
 """
-import sys
-import urllib.request
-
+from sys import argv
+import urllib.request as req
 
 if __name__ == "__main__":
-    url = sys.argv[1]
+    url = argv[1]
 
-    request = urllib.request.Request(url)
-    with urllib.request.urlopen(request) as response:
+    with req.urlopen(url) as response:
         print(dict(response.headers).get("X-Request-Id"))
-
